@@ -2,6 +2,7 @@
 
 .page {
   /* сохраните в разметке и стилях класс page. На его основе работает скрипт. */
+  background-color: var(--bg-color);
   background-image: url(../images/cover-image-dark.png);
   background-position: center;
   background-size: cover;
@@ -12,7 +13,8 @@
   position: relative;
   display: grid;
   grid-template-rows: 1fr min-content 1fr;
-  min-height: 100vh;
+  height: 100vh;
+  min-height: 668px;
   padding: 10px;
 }
 
@@ -55,10 +57,10 @@
   position: absolute;
   top: 0;
   right: 27px;
-  width: 33px;
-  height: 26px;
+  min-width: 27px;
+  min-height: 26px;
   color: var(--accent-color);
-  font-family: var(--main-font, sans-serif);
+  font-family: var(--main-font, monospace, sans-serif);
   font-size: var(--main-text-size);
   line-height: 25px;
 }
@@ -87,7 +89,7 @@
   border: none;
   padding: 3px 12px;
   color: var(--accent-color);
-  font-family: var(--main-font, sans-serif);
+  font-family: var(--main-font, monospace, sans-serif);
   font-size: var(--main-text-size);
   line-height: var(--main-text-size);
   text-transform: lowercase;
@@ -104,19 +106,19 @@
 }
 
 .header__theme-menu-button:focus-visible {
-  border-bottom: 1px solid var(--accent-color);
+  border-bottom: 1px solid currentColor;
 }
 
 .header__theme-menu-button_active {
-  border: 1px solid var(--accent-color);
+  border: 1px solid currentColor;
   pointer-events: none;
 }
 
 .header__title {
   color: var(--accent-text);
-  font-family: var(--main-font);
+  font-family: var(--main-font, monospace, sans-serif);
   font-weight: bold;
-  font-size: clamp(7.25rem, 7.0115rem + 1.0178vw, 7.5rem);
+  font-size: var(--title-size);
   line-height: 82.5%;
   text-shadow: 4px 4px 0 var(--accent-color);
 }
@@ -129,7 +131,7 @@
   max-width: 364px;
   height: fit-content;
   color: var(--text-color);
-  font-family: var(--main-font, sans-serif);
+  font-family: var(--main-font, monospace, sans-serif);
   font-weight: bold;
   font-size: var(--main-text-size);
   line-height: 23.4px;
@@ -140,7 +142,6 @@
   display: grid;
   gap: 20px;
   padding: 40px 10px 50px;
-  background-color: var(--bg-color);
 }
 
 .section-list {
@@ -151,7 +152,7 @@
 .section-title {
   --text-color: var(--accent-color);
   color: var(--text-color);
-  font-family: var(--main-font, sans-serif);
+  font-family: var(--main-font, monospace, sans-serif);
   font-weight: bold;
   font-size: var(--main-text-size);
   line-height: 23.4px;
@@ -165,7 +166,7 @@
 
 .section-article__title {
   margin-block-end: 10px;
-  font-family: var(--main-font, sans-serif);
+  font-family: var(--main-font, monospace, sans-serif);
   font-weight: bold;
   font-size: var(--main-text-size);
   line-height: 23.4px;
@@ -173,9 +174,13 @@
 
 .section-article__description {
   color: var(--main-text);
-  font-family: var(--main-font, sans-serif);
+  font-family: var(--main-font, monospace, sans-serif);
   font-size: var(--main-text-size);
   line-height: 23.4px;
+}
+
+.section-article__description:not(:first-of-type) {
+  padding-block-start: 20px;
 }
 
 .section-article__link {
@@ -184,7 +189,7 @@
 }
 
 .section-article__link:hover {
-  border-bottom: 1px solid var(--main-text);
+  border-bottom: 1px solid currentColor;
 }
 
 .section-article__link:focus {
@@ -192,7 +197,7 @@
 }
 
 .section-article__link:focus-visible {
-  border: 1px solid var(--main-text);
+  border: 1px solid currentColor;
 }
 
 .concentration-decrease,
@@ -200,13 +205,12 @@
   display: grid;
   gap: 20px;
   padding: 0 10px 50px;
-  background-color: var(--bg-color);
 }
 
 .section-subtitle {
   height: min-content;
   margin-block-end: 20px;
-  font-family: var(--main-font, sans-serif);
+  font-family: var(--main-font, monospace, sans-serif);
   font-size: var(--main-text-size);
 }
 
@@ -218,7 +222,6 @@
   display: grid;
   gap: 7px;
   padding: 0 10px 40px;
-  background-color: var(--bg-color);
 }
 
 .gallery .section-title {
@@ -236,21 +239,25 @@
   display: grid;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
+  height: 100vh;
+  min-height: 668px;
   padding: 10px;
-  background-color: var(--bg-color);
 }
 
 .footer__title {
   color: var(--accent-text);
-  font-family: var(--main-font, sans-serif);
+  font-family: var(--main-font, monospace, sans-serif);
   font-weight: bold;
-  font-size: clamp(7.25rem, 7.0115rem + 1.0178vw, 7.5rem);
+  font-size: var(--title-size);
   line-height: 82.5%;
   text-shadow: 2px 2px var(--accent-color);
 }
 
 @media (width >= 768px) {
+  :root {
+    --title-size: clamp(7.5rem, 0.5625rem + 14.4531vw, 9.8125rem);
+  }
+
   .header {
     padding: 20px 20px 20px 0;
   }
@@ -265,8 +272,9 @@
     left: 20px;
   }
 
-  .header__title {
-    font-size: clamp(7.5rem, 0.5625rem + 14.4531vw, 9.8125rem);
+  .header__title,
+  .footer__title {
+    font-size: var(--title-size);
   }
 
   .header__description {
@@ -337,10 +345,6 @@
 
   .footer {
     padding: 20px;
-  }
-
-  .footer__title {
-    font-size: clamp(7.5rem, 0.5625rem + 14.4531vw, 9.8125rem);
   }
 }
 
